@@ -1,0 +1,11 @@
+MemoryPlaces.Api/MemoryPlaces.Api/obj
+MemoryPlaces.Api/MemoryPlaces.Api/bin
+MemoryPlaces.Api/MemoryPlaces.Api/appsettings.json
+MemoryPlaces.Api/MemoryPlaces.Api/appsettings.Development.json
+MemoryPlaces.Api/MemoryPlaces.Application/obj
+MemoryPlaces.Api/MemoryPlaces.Application/bin
+MemoryPlaces.Api/MemoryPlaces.Domain/obj
+MemoryPlaces.Api/MemoryPlaces.Domain/bin
+MemoryPlaces.Api/MemoryPlaces.Infrastructure/obj
+MemoryPlaces.Api/MemoryPlaces.Infrastructure/bin
+
