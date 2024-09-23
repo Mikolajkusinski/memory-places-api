@@ -1,4 +1,5 @@
 using MemoryPlaces.Infrastructure.Persistance;
+using MemoryPlaces.Infrastructure.Seeders;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,5 +18,7 @@ public static class ServiceCollectionExtension
                 configuration.GetConnectionString("MemoryPlacesDBConnectionString")
             )
         );
+
+        services.AddScoped<DatabaseSeeder>();
     }
 }
