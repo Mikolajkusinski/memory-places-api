@@ -1,10 +1,11 @@
+using MemoryPlaces.Api.Middleware;
 using MemoryPlaces.Infrastructure.Extensions;
 using MemoryPlaces.Infrastructure.Seeders;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddInfrastructure(builder.Configuration);
-
+builder.Services.AddScoped<ErrorHandlingMiddleware>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -16,10 +17,16 @@ await seeder.Seed();
 
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<ErrorHandlingMiddleware>();
+
 app.UseHttpsRedirection();
+
+app.UseRouting();
+app.UseEndpoints(endpoints => endpoints.MapControllers());
 
 app.Run();
