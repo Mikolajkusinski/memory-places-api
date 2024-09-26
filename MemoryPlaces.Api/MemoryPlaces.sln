@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryPlaces.Application", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryPlaces.Infrastructure", "MemoryPlaces.Infrastructure\MemoryPlaces.Infrastructure.csproj", "{9108CA83-5884-4815-A903-0DB096C6FB30}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryPlaces.Shared", "MemoryPlaces.Shared\MemoryPlaces.Shared.csproj", "{45B2F4FE-B614-448A-8615-AD017F08327B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{9108CA83-5884-4815-A903-0DB096C6FB30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9108CA83-5884-4815-A903-0DB096C6FB30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9108CA83-5884-4815-A903-0DB096C6FB30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45B2F4FE-B614-448A-8615-AD017F08327B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45B2F4FE-B614-448A-8615-AD017F08327B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45B2F4FE-B614-448A-8615-AD017F08327B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45B2F4FE-B614-448A-8615-AD017F08327B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

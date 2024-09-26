@@ -31,4 +31,12 @@ public class AccountRepository : IAccountRepository
         _dbContext.Add(user);
         await _dbContext.SaveChangesAsync();
     }
+
+    public async Task<User?> GetUserByEmail(string email)
+    {
+        var user = await _dbContext
+            .Users.Include(r => r.Role)
+            .FirstOrDefaultAsync(u => u.Email == email);
+        return user;
+    }
 }

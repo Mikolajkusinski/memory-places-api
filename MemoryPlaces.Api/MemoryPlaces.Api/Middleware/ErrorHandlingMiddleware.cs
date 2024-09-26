@@ -1,4 +1,4 @@
-using MemoryPlaces.Api.Exceptions;
+using MemoryPlaces.Shared.Exceptions;
 
 namespace MemoryPlaces.Api.Middleware;
 

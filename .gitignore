@@ -9,3 +9,6 @@ MemoryPlaces.Api/MemoryPlaces.Domain/bin
 MemoryPlaces.Api/MemoryPlaces.Infrastructure/obj
 MemoryPlaces.Api/MemoryPlaces.Infrastructure/bin
 
+MemoryPlaces.Api/MemoryPlaces.Shared/obj
+MemoryPlaces.Api/MemoryPlaces.Shared/bin
+

@@ -1,4 +1,5 @@
 using MediatR;
+using MemoryPlaces.Application.Account.Commands.Login;
 using MemoryPlaces.Application.Account.Commands.Register;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,5 +21,12 @@ public class AccountController : ControllerBase
     {
         await _mediator.Send(command);
         return Ok();
+    }
+
+    [HttpPost("login")]
+    public async Task<ActionResult> Login([FromBody] LoginCommand command)
+    {
+        var token = await _mediator.Send(command);
+        return Ok(token);
     }
 }

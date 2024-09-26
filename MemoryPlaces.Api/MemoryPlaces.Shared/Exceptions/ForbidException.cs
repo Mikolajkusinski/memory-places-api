@@ -1,3 +1,3 @@
-namespace MemoryPlaces.Api.Exceptions;
+namespace MemoryPlaces.Shared.Exceptions;
 
 public class ForbidException : Exception { }

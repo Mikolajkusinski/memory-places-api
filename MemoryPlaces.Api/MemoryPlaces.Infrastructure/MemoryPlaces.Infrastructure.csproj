@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="../MemoryPlaces.Application/MemoryPlaces.Application.csproj" />
+    <ProjectReference Include="..\MemoryPlaces.Shared\MemoryPlaces.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
