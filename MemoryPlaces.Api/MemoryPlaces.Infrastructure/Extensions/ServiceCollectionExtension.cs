@@ -1,4 +1,6 @@
+using MemoryPlaces.Domain.RepositoryInterfaces;
 using MemoryPlaces.Infrastructure.Persistance;
+using MemoryPlaces.Infrastructure.Repositories;
 using MemoryPlaces.Infrastructure.Seeders;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -20,5 +22,6 @@ public static class ServiceCollectionExtension
         );
 
         services.AddScoped<DatabaseSeeder>();
+        services.AddScoped<IAccountRepository, AccountRepository>();
     }
 }
