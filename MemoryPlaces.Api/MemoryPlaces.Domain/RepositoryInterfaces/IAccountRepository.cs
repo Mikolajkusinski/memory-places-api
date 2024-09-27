@@ -8,4 +8,6 @@ public interface IAccountRepository
     bool AccountNameExist(string name);
     bool AccountEmailExist(string email);
     Task<User?> GetUserByEmail(string email);
+    Task<User?> GetUserById(string id);
+    Task Commit();
 }

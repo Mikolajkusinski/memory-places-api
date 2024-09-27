@@ -26,6 +26,11 @@ public class AccountRepository : IAccountRepository
         return nameInUse;
     }
 
+    public async Task Commit()
+    {
+        await _dbContext.SaveChangesAsync();
+    }
+
     public async Task Create(User user)
     {
         _dbContext.Add(user);
@@ -37,6 +42,12 @@ public class AccountRepository : IAccountRepository
         var user = await _dbContext
             .Users.Include(r => r.Role)
             .FirstOrDefaultAsync(u => u.Email == email);
+        return user;
+    }
+
+    public async Task<User?> GetUserById(string id)
+    {
+        var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id.ToString() == id);
         return user;
     }
 }

@@ -31,10 +31,20 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, string>
     public async Task<string> Handle(LoginCommand request, CancellationToken cancellationToken)
     {
         var user = await _accountRepository.GetUserByEmail(request.Email);
-        var role = user.Role.Name;
+
         if (user is null)
         {
             throw new BadRequestException("Invalid username or password");
+        }
+
+        if (user.IsConfirmed == false)
+        {
+            throw new BadRequestException("Please confirm your email address");
+        }
+
+        if (user.IsActive == false)
+        {
+            throw new BadRequestException("Your account is inactive");
         }
 
         var result = _passwordHasher.VerifyHashedPassword(

@@ -1,4 +1,5 @@
 using MediatR;
+using MemoryPlaces.Application.Account.Commands.ConfirmAccount;
 using MemoryPlaces.Application.Account.Commands.Login;
 using MemoryPlaces.Application.Account.Commands.Register;
 using Microsoft.AspNetCore.Mvc;
@@ -28,5 +29,12 @@ public class AccountController : ControllerBase
     {
         var token = await _mediator.Send(command);
         return Ok(token);
+    }
+
+    [HttpPost("confirm/{id}")]
+    public async Task<ActionResult> Confirm(string id)
+    {
+        await _mediator.Send(new ConfirmAccountCommand() { Id = id });
+        return Ok();
     }
 }
