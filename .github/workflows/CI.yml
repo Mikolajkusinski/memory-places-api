@@ -1,4 +1,5 @@
 name: CI
+
 on:
   push:
     branches: [main]
@@ -9,18 +10,19 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3      
+      - uses: actions/checkout@v3
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.x'      
+          dotnet-version: '8.0.x'
       - name: Restore dependencies
-        run: dotnet restore MemoryPlaces.sln
+        run: dotnet restore ./MemoryPlaces.Api/MemoryPlaces.sln
       - name: Build the solution
-        run: dotnet build MemoryPlaces.sln --no-restore --configuration Release      
+        run: dotnet build ./MemoryPlaces.Api/MemoryPlaces.sln --no-restore --configuration Release
       - name: Run tests
-        run: dotnet test MemoryPlaces.sln --no-build --configuration Release --verbosity normal      
+        run: dotnet test ./MemoryPlaces.Api/MemoryPlaces.sln --no-build --configuration Release --verbosity normal
       - name: Upload test results
         if: always()
         uses: actions/upload-artifact@v3
