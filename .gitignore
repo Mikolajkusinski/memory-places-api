@@ -12,3 +12,11 @@ MemoryPlaces.Api/MemoryPlaces.Infrastructure/bin
 MemoryPlaces.Api/MemoryPlaces.Shared/obj
 MemoryPlaces.Api/MemoryPlaces.Shared/bin
 
+MemoryPlaces.Api/MemoryPlaces.Api.Tests/obj
+MemoryPlaces.Api/MemoryPlaces.Api.Tests/bin
+MemoryPlaces.Api/MemoryPlaces.Application.Tests/obj
+MemoryPlaces.Api/MemoryPlaces.Application.Tests/bin
+MemoryPlaces.Api/MemoryPlaces.Domain.Tests/obj
+MemoryPlaces.Api/MemoryPlaces.Domain.Tests/bin
+MemoryPlaces.Api/MemoryPlaces.Infrastructure.Tests/obj
+MemoryPlaces.Api/MemoryPlaces.Infrastructure.Tests/bin
