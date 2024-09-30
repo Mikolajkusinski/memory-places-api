@@ -36,5 +36,6 @@ public static class ServiceCollectionExtension
 
         services.AddScoped<DatabaseSeeder>();
         services.AddScoped<IAccountRepository, AccountRepository>();
+        services.AddScoped<IPlaceRepository, PlaceRepository>();
     }
 }

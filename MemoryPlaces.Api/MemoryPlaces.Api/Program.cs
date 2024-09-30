@@ -27,10 +27,12 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseMiddleware<ErrorHandlingMiddleware>();
+app.UseAuthentication();
 
 app.UseHttpsRedirection();
 
 app.UseRouting();
+app.UseAuthorization();
 app.UseEndpoints(endpoints => endpoints.MapControllers());
 
 app.Run();
