@@ -4,5 +4,6 @@ namespace MemoryPlaces.Domain.RepositoryInterfaces;
 
 public interface IPlaceRepository
 {
-    Task Create(Place place);
+    Task CreateAsync(Place place);
+    Task<IEnumerable<Domain.Entities.Place>> GetAllAsync();
 }

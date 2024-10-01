@@ -1,5 +1,6 @@
 using MediatR;
 using MemoryPlaces.Application.Place.Commands.Create;
+using MemoryPlaces.Application.Place.Queries.GetAll;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,5 +23,14 @@ public class PlaceController : ControllerBase
     {
         var PlaceId = await _mediator.Send(command);
         return Created(PlaceId, null);
+    }
+
+    [HttpGet]
+    [AllowAnonymous]
+    public async Task<ActionResult> CreatePlace([FromQuery] GetAllQuery query)
+    {
+        var data = await _mediator.Send(query);
+
+        return Ok(data);
     }
 }

@@ -1,8 +1,6 @@
-using System;
+namespace MemoryPlaces.Application.Place;
 
-namespace MemoryPlaces.Domain.Entities;
-
-public class Place
+public class PlaceDto
 {
     public Guid Id { get; set; }
     public string Name { get; set; } = default!;
@@ -11,19 +9,19 @@ public class Place
     public decimal Longitude { get; set; }
     public string? WikipediaLink { get; set; }
     public string? WebsiteLink { get; set; }
-    public DateTime Created { get; set; } = DateTime.UtcNow;
-    public bool IsVerified { get; set; } = false;
+    public DateTime Created { get; set; }
+    public bool IsVerified { get; set; }
     public DateTime? VerificationDate { get; set; }
 
     public Guid AuthorId { get; set; }
-    public User Author { get; set; } = default!;
+    public string AuthorName { get; set; } = default!;
 
     public int TypeId { get; set; }
-    public Type Type { get; set; } = default!;
+    public string TypeName { get; set; } = default!;
 
     public int PeriodId { get; set; }
-    public Period Period { get; set; } = default!;
+    public string PeriodName { get; set; } = default!;
 
     public int CategoryId { get; set; }
-    public Category Category { get; set; } = default!;
+    public string CategoryName { get; set; } = default!;
 }

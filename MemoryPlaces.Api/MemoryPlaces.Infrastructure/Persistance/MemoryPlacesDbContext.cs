@@ -18,5 +18,6 @@ public class MemoryPlacesDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
+        modelBuilder.Ignore<LocalizableEntity>();
     }
 }

@@ -18,7 +18,7 @@ public class CreateCommandHandler : IRequestHandler<CreateCommand, string>
     public async Task<string> Handle(CreateCommand request, CancellationToken cancellationToken)
     {
         var place = _mapper.Map<Domain.Entities.Place>(request);
-        await _placeRepository.Create(place);
+        await _placeRepository.CreateAsync(place);
 
         return place.Id.ToString();
     }
