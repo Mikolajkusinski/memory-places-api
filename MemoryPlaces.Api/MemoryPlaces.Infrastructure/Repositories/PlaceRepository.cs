@@ -14,6 +14,11 @@ public class PlaceRepository : IPlaceRepository
         _dbContext = dbContext;
     }
 
+    public async Task Commit()
+    {
+        await _dbContext.SaveChangesAsync();
+    }
+
     public async Task CreateAsync(Place place)
     {
         _dbContext.Add(place);
@@ -35,4 +40,9 @@ public class PlaceRepository : IPlaceRepository
             .Include(x => x.Category)
             .Include(x => x.Author)
             .FirstOrDefaultAsync(x => x.Id.ToString() == id);
+
+    public void Remove(Place place)
+    {
+        _dbContext.Places.Remove(place);
+    }
 }

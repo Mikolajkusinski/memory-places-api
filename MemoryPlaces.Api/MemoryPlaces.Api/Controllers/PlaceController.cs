@@ -1,5 +1,6 @@
 using MediatR;
 using MemoryPlaces.Application.Place.Commands.Create;
+using MemoryPlaces.Application.Place.Commands.Delete;
 using MemoryPlaces.Application.Place.Queries.GetAll;
 using MemoryPlaces.Application.Place.Queries.GetById;
 using Microsoft.AspNetCore.Authorization;
@@ -43,5 +44,15 @@ public class PlaceController : ControllerBase
         var data = await _mediator.Send(query);
 
         return Ok(data);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> DeletePlaceById(string id)
+    {
+        var query = new DeleteCommand() { Id = id };
+
+        await _mediator.Send(query);
+
+        return NoContent();
     }
 }

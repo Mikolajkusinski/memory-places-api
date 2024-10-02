@@ -5,6 +5,8 @@ namespace MemoryPlaces.Domain.RepositoryInterfaces;
 public interface IPlaceRepository
 {
     Task CreateAsync(Place place);
-    Task<IEnumerable<Domain.Entities.Place>> GetAllAsync();
-    Task<Domain.Entities.Place?> GetByIdAsync(string id);
+    Task<IEnumerable<Place>> GetAllAsync();
+    Task<Place?> GetByIdAsync(string id);
+    void Remove(Place place);
+    Task Commit();
 }
