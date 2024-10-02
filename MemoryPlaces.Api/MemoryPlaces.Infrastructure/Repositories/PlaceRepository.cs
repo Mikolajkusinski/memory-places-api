@@ -27,4 +27,12 @@ public class PlaceRepository : IPlaceRepository
             .Include(x => x.Category)
             .Include(x => x.Author)
             .ToListAsync();
+
+    public async Task<Place?> GetByIdAsync(string id) =>
+        await _dbContext
+            .Places.Include(x => x.Type)
+            .Include(x => x.Period)
+            .Include(x => x.Category)
+            .Include(x => x.Author)
+            .FirstOrDefaultAsync(x => x.Id.ToString() == id);
 }
