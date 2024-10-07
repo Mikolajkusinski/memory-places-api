@@ -1,6 +1,8 @@
 using System.Text;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using MemoryPlaces.Application.ApplicationUser;
+using MemoryPlaces.Application.Interfaces;
 using MemoryPlaces.Application.Mappings;
 using MemoryPlaces.Application.Settings;
 using MemoryPlaces.Domain.Entities;
@@ -58,5 +60,6 @@ public static class ServiceCollectionExtensions
             .AddFluentValidationClientsideAdapters();
 
         services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+        services.AddScoped<IUserContext, UserContext>();
     }
 }

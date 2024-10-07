@@ -1,6 +1,8 @@
 using MediatR;
 using MemoryPlaces.Application.Place.Commands.Create;
 using MemoryPlaces.Application.Place.Commands.Delete;
+using MemoryPlaces.Application.Place.Commands.Update;
+using MemoryPlaces.Application.Place.Commands.Verify;
 using MemoryPlaces.Application.Place.Queries.GetAll;
 using MemoryPlaces.Application.Place.Queries.GetById;
 using Microsoft.AspNetCore.Authorization;
@@ -40,17 +42,36 @@ public class PlaceController : ControllerBase
     [AllowAnonymous]
     public async Task<ActionResult> GetPlaceById([FromQuery] string? locale, string id)
     {
-        var query = new GetByIdQuery() { GivenId = id, Locale = locale, };
+        var query = new GetByIdQuery() { GivenId = id, Locale = locale };
         var data = await _mediator.Send(query);
 
         return Ok(data);
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("delete/{id}")]
     public async Task<ActionResult> DeletePlaceById(string id)
     {
         var query = new DeleteCommand() { Id = id };
+        await _mediator.Send(query);
 
+        return NoContent();
+    }
+
+    [HttpPut("update/{id}")]
+    [Authorize(Roles = "User,Admin")]
+    public async Task<ActionResult> UpdatePlace([FromQuery] string? locale, string id)
+    {
+        var query = new UpdateCommand() { GivenId = id, Locale = locale };
+        var data = await _mediator.Send(query);
+
+        return Ok(data);
+    }
+
+    [HttpPut("verify/{id}")]
+    [Authorize(Roles = "Admin,Moderator")]
+    public async Task<ActionResult> VerifyPlace(string id)
+    {
+        var query = new VerifyCommand() { GivenId = id };
         await _mediator.Send(query);
 
         return NoContent();
