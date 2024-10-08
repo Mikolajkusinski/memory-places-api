@@ -32,8 +32,22 @@ public class PlaceController : ControllerBase
 
     [HttpGet]
     [AllowAnonymous]
-    public async Task<ActionResult> GetAllPlaces([FromQuery] GetAllQuery query)
+    public async Task<ActionResult> GetAllPlaces(
+        [FromQuery] string? locale,
+        [FromQuery] string? searchPhrase,
+        [FromQuery] int? filterCategoryId,
+        [FromQuery] int? filterTypeId,
+        [FromQuery] int? filterPeriodId
+    )
     {
+        var query = new GetAllQuery()
+        {
+            Locale = locale,
+            SearchPhrase = searchPhrase,
+            FilterCategoryId = filterCategoryId,
+            FilterTypeId = filterTypeId,
+            FilterPeriodId = filterPeriodId
+        };
         var data = await _mediator.Send(query);
 
         return Ok(data);

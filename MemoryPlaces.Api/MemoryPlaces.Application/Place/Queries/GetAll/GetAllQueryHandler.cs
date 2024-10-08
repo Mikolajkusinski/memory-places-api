@@ -20,7 +20,12 @@ public class GetAllQueryHandler : IRequestHandler<GetAllQuery, IEnumerable<Place
         CancellationToken cancellationToken
     )
     {
-        var places = await _placeRepository.GetAllAsync();
+        var places = await _placeRepository.GetAllAsync(
+            request.SearchPhrase,
+            request.FilterCategoryId,
+            request.FilterTypeId,
+            request.FilterPeriodId
+        );
         var locale = request.Locale ?? "en";
         var placeDtos = _mapper.Map<IEnumerable<PlaceDto>>(
             places,

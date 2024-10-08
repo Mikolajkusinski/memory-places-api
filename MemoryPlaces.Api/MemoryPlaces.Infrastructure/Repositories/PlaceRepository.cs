@@ -25,13 +25,38 @@ public class PlaceRepository : IPlaceRepository
         await _dbContext.SaveChangesAsync();
     }
 
-    public async Task<IEnumerable<Place>> GetAllAsync() =>
-        await _dbContext
+    public async Task<IEnumerable<Place>> GetAllAsync(
+        string? searchPhrase,
+        int? filterCategoryId,
+        int? filterTypeId,
+        int? filterPeriodId
+    )
+    {
+        var query = _dbContext
             .Places.Include(x => x.Type)
             .Include(x => x.Period)
             .Include(x => x.Category)
             .Include(x => x.Author)
-            .ToListAsync();
+            .Where(x => searchPhrase == null || x.Name.ToLower().Contains(searchPhrase.ToLower()))
+            .AsQueryable();
+
+        if (filterCategoryId.HasValue)
+        {
+            query = query.Where(p => p.CategoryId == filterCategoryId);
+        }
+
+        if (filterTypeId.HasValue)
+        {
+            query = query.Where(p => p.TypeId == filterTypeId);
+        }
+
+        if (filterPeriodId.HasValue)
+        {
+            query = query.Where(p => p.PeriodId == filterPeriodId);
+        }
+
+        return await query.ToListAsync();
+    }
 
     public async Task<IEnumerable<Place>> GetAllByUserIdAsync(string userId) =>
         await _dbContext
