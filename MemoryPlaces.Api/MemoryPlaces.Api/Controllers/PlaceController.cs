@@ -4,13 +4,14 @@ using MemoryPlaces.Application.Place.Commands.Delete;
 using MemoryPlaces.Application.Place.Commands.Update;
 using MemoryPlaces.Application.Place.Commands.Verify;
 using MemoryPlaces.Application.Place.Queries.GetAll;
+using MemoryPlaces.Application.Place.Queries.GetAllByUserId;
 using MemoryPlaces.Application.Place.Queries.GetById;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MemoryPlaces.Api.Controllers;
 
-[Route("api/place")]
+[Route("api/places")]
 [ApiController]
 [Authorize]
 public class PlaceController : ControllerBase
@@ -75,5 +76,15 @@ public class PlaceController : ControllerBase
         await _mediator.Send(query);
 
         return NoContent();
+    }
+
+    [HttpGet("users/{userId}")]
+    [AllowAnonymous]
+    public async Task<ActionResult> GetPlacesByUserId([FromQuery] string? locale, string userId)
+    {
+        var query = new GetAllByUserIdQuery() { GivenUserId = userId, Locale = locale };
+        var data = await _mediator.Send(query);
+
+        return Ok(data);
     }
 }
