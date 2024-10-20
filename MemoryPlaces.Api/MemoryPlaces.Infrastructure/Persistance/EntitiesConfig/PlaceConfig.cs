@@ -18,5 +18,6 @@ public class PlaceConfig : IEntityTypeConfiguration<Place>
         builder.HasOne(p => p.Type).WithMany().HasForeignKey(p => p.TypeId);
         builder.HasOne(p => p.Period).WithMany().HasForeignKey(p => p.PeriodId);
         builder.HasOne(p => p.Category).WithMany().HasForeignKey(p => p.CategoryId);
+        builder.HasMany(p => p.Images).WithOne(i => i.Place).HasForeignKey(i => i.PlaceId);
     }
 }

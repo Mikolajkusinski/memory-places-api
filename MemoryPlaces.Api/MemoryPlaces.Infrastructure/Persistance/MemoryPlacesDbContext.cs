@@ -14,6 +14,7 @@ public class MemoryPlacesDbContext : DbContext
     public DbSet<Category> Categories { get; set; }
     public DbSet<Domain.Entities.Type> Types { get; set; }
     public DbSet<Period> Periods { get; set; }
+    public DbSet<Image> Images { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

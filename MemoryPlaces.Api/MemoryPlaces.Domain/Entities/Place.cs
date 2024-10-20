@@ -26,4 +26,6 @@ public class Place
 
     public int CategoryId { get; set; }
     public Category Category { get; set; } = default!;
+
+    public List<Image> Images { get; set; } = new();
 }
