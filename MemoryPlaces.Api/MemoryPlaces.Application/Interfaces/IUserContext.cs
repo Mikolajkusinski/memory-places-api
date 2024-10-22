@@ -4,5 +4,5 @@ namespace MemoryPlaces.Application.Interfaces;
 
 public interface IUserContext
 {
-    CurrnetUser? GetCurrnetUser();
+    CurrentUser? GetCurrentUser();
 }

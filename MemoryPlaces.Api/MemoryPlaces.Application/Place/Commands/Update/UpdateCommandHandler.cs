@@ -26,7 +26,7 @@ public class UpdateCommandHandler : IRequestHandler<UpdateCommand, PlaceDto>
     public async Task<PlaceDto> Handle(UpdateCommand request, CancellationToken cancellationToken)
     {
         var place = await _placeRepository.GetByIdAsync(request.GivenId);
-        var user = _userContext.GetCurrnetUser();
+        var user = _userContext.GetCurrentUser();
 
         if (place is null)
         {

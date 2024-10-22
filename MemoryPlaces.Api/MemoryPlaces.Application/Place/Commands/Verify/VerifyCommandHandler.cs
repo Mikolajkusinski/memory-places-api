@@ -19,7 +19,7 @@ public class VerifyCommandHandler : IRequestHandler<VerifyCommand>
     public async Task Handle(VerifyCommand request, CancellationToken cancellationToken)
     {
         var place = await _placeRepository.GetByIdAsync(request.GivenId);
-        var user = _userContext.GetCurrnetUser();
+        var user = _userContext.GetCurrentUser();
 
         if (place is null)
         {

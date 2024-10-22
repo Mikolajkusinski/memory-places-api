@@ -1,8 +1,8 @@
 namespace MemoryPlaces.Application.ApplicationUser;
 
-public class CurrnetUser
+public class CurrentUser
 {
-    public CurrnetUser(string id, string email, string role)
+    public CurrentUser(string id, string email, string role)
     {
         Id = id;
         Email = email;

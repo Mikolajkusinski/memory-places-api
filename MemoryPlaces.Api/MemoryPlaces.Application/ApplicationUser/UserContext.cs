@@ -13,7 +13,7 @@ public class UserContext : IUserContext
         _httpContextAccessor = httpContextAccessor;
     }
 
-    public CurrnetUser? GetCurrnetUser()
+    public CurrentUser? GetCurrentUser()
     {
         var user = _httpContextAccessor?.HttpContext?.User;
         if (user == null)
@@ -30,6 +30,6 @@ public class UserContext : IUserContext
         var email = user.FindFirst(c => c.Type == ClaimTypes.Email)!.Value;
         var role = user.FindFirst(c => c.Type == ClaimTypes.Role)!.Value;
 
-        return new CurrnetUser(id, email, role);
+        return new CurrentUser(id, email, role);
     }
 }
