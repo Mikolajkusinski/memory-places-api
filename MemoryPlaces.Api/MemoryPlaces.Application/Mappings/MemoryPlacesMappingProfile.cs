@@ -14,7 +14,9 @@ public class MemoryPlacesMappingProfile : Profile
         CreateMap<CreatePlaceDto, Domain.Entities.Place>();
 
         CreateMap<Domain.Entities.Place, PlaceDto>()
+            .ForMember(dest => dest.AuthorId, opt => opt.MapFrom(src => src.Author.Id))
             .ForMember(dest => dest.AuthorName, opt => opt.MapFrom(src => src.Author.Name))
+            .ForMember(dest => dest.TypeId, opt => opt.MapFrom(src => src.Type.Id))
             .ForMember(
                 dest => dest.TypeName,
                 opt =>
@@ -26,6 +28,7 @@ public class MemoryPlacesMappingProfile : Profile
                         }
                     )
             )
+            .ForMember(dest => dest.PeriodId, opt => opt.MapFrom(src => src.Period.Id))
             .ForMember(
                 dest => dest.PeriodName,
                 opt =>
@@ -37,6 +40,7 @@ public class MemoryPlacesMappingProfile : Profile
                         }
                     )
             )
+            .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(src => src.Category.Id))
             .ForMember(
                 dest => dest.CategoryName,
                 opt =>
