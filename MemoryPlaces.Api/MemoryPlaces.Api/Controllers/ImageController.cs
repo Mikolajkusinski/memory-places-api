@@ -3,6 +3,7 @@ using MemoryPlaces.Application.Extensions;
 using MemoryPlaces.Application.Image;
 using MemoryPlaces.Application.Image.Commands.UploadImages;
 using MemoryPlaces.Application.Image.Queries.GetAllImages;
+using MemoryPlaces.Application.Image.Queries.GetAllImagesByPlaceId;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,8 +21,8 @@ public class ImageController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpPost("place/{id}")]
-    public async Task<IActionResult> UploadImages([FromForm] List<IFormFile> files, string id)
+    [HttpPost("place/{placeId}")]
+    public async Task<IActionResult> UploadImages([FromForm] List<IFormFile> files, string placeId)
     {
         if (files.Count > 3)
         {
@@ -51,16 +52,26 @@ public class ImageController : ControllerBase
             })
             .ToList();
 
-        var command = new UploadImagesCommand(images, id);
+        var command = new UploadImagesCommand(images, placeId);
         var blobUris = await _mediator.Send(command);
 
         return Ok(blobUris);
     }
 
     [HttpGet]
+    [AllowAnonymous]
     public async Task<IActionResult> GetAllImages()
     {
         var query = new GetAllImagesQuery();
+        var data = await _mediator.Send(query);
+        return Ok(data);
+    }
+
+    [HttpGet("{placeId}")]
+    [AllowAnonymous]
+    public async Task<IActionResult> GetAllImagesByPlaceId(string placeId)
+    {
+        var query = new GetAllImagesByPlaceIdQuery() { PlaceId = placeId };
         var data = await _mediator.Send(query);
         return Ok(data);
     }

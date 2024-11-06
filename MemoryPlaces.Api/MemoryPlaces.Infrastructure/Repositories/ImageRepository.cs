@@ -24,17 +24,13 @@ public class ImageRepository : IImageRepository
         await _dbContext.SaveChangesAsync();
     }
 
-    public async Task<IEnumerable<Image>> GetAllAsync() =>
-        await _dbContext.Images.Include(x => x.Place).ToListAsync();
+    public async Task<IEnumerable<Image>> GetAllAsync() => await _dbContext.Images.ToListAsync();
 
     public async Task<IEnumerable<Image>> GetAllByPlaceIdAsync(string placeId) =>
-        await _dbContext
-            .Images.Include(x => x.Place)
-            .Where(x => x.PlaceId.ToString() == placeId)
-            .ToListAsync();
+        await _dbContext.Images.Where(x => x.PlaceId.ToString() == placeId).ToListAsync();
 
     public async Task<Image?> GetByIdAsync(int id) =>
-        await _dbContext.Images.Include(x => x.Place).FirstOrDefaultAsync(x => x.Id == id);
+        await _dbContext.Images.FirstOrDefaultAsync(x => x.Id == id);
 
     public void Remove(Image image)
     {
