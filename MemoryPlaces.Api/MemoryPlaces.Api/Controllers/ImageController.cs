@@ -2,6 +2,7 @@ using MediatR;
 using MemoryPlaces.Application.Extensions;
 using MemoryPlaces.Application.Image;
 using MemoryPlaces.Application.Image.Commands.UploadImages;
+using MemoryPlaces.Application.Image.Queries.GetAllImages;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,7 +10,7 @@ namespace MemoryPlaces.Api.Controllers;
 
 [Route("api/image")]
 [ApiController]
-[Authorize]
+// [Authorize]
 public class ImageController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -54,5 +55,13 @@ public class ImageController : ControllerBase
         var blobUris = await _mediator.Send(command);
 
         return Ok(blobUris);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetAllImages()
+    {
+        var query = new GetAllImagesQuery();
+        var data = await _mediator.Send(query);
+        return Ok(data);
     }
 }

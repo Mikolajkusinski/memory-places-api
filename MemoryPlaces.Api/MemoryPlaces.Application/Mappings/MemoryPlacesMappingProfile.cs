@@ -1,5 +1,6 @@
 using AutoMapper;
 using MemoryPlaces.Application.Account;
+using MemoryPlaces.Application.Image;
 using MemoryPlaces.Application.Place;
 using MemoryPlaces.Domain.Entities;
 
@@ -52,5 +53,7 @@ public class MemoryPlacesMappingProfile : Profile
                         }
                     )
             );
+
+        CreateMap<Domain.Entities.Image, ImageDataDto>().ReverseMap();
     }
 }

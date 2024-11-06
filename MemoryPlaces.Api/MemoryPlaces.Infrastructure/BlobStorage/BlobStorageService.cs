@@ -30,14 +30,6 @@ public class BlobStorageService : IBlobStorageService
         return blobClient.Uri.ToString();
     }
 
-    public async Task<Stream> DownloadBlobAsync(string blobName)
-    {
-        var blobContainerClient = _blobServiceClient.GetBlobContainerClient("images");
-        var blobClient = blobContainerClient.GetBlobClient(blobName);
-        var downloadInfo = await blobClient.DownloadAsync();
-        return downloadInfo.Value.Content;
-    }
-
     public async Task DeleteBlobAsync(string blobName)
     {
         var blobContainerClient = _blobServiceClient.GetBlobContainerClient("images");
