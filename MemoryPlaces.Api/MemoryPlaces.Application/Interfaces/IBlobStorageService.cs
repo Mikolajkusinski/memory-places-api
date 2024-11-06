@@ -1,8 +1,10 @@
+using MemoryPlaces.Application.Image;
+
 namespace MemoryPlaces.Application.Interfaces;
 
 public interface IBlobStorageService
 {
-    Task<string> UploadBlobAsync(string blobName, Stream stream);
+    Task<string> UploadBlobAsync(ImageDto image);
     Task<Stream> DownloadBlobAsync(string blobName);
     Task DeleteBlobAsync(string blobName);
 }
