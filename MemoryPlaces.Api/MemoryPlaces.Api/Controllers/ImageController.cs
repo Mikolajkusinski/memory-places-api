@@ -4,6 +4,7 @@ using MemoryPlaces.Application.Image;
 using MemoryPlaces.Application.Image.Commands.UploadImages;
 using MemoryPlaces.Application.Image.Queries.GetAllImages;
 using MemoryPlaces.Application.Image.Queries.GetAllImagesByPlaceId;
+using MemoryPlaces.Application.Image.Queries.GetImageById;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -67,11 +68,20 @@ public class ImageController : ControllerBase
         return Ok(data);
     }
 
-    [HttpGet("{placeId}")]
+    [HttpGet("place/{placeId}")]
     [AllowAnonymous]
     public async Task<IActionResult> GetAllImagesByPlaceId(string placeId)
     {
         var query = new GetAllImagesByPlaceIdQuery() { PlaceId = placeId };
+        var data = await _mediator.Send(query);
+        return Ok(data);
+    }
+
+    [HttpGet("{id}")]
+    [AllowAnonymous]
+    public async Task<IActionResult> GetImageById(int id)
+    {
+        var query = new GetImageByIdQuery() { ImageId = id };
         var data = await _mediator.Send(query);
         return Ok(data);
     }
