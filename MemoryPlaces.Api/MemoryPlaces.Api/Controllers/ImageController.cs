@@ -1,6 +1,7 @@
 using MediatR;
 using MemoryPlaces.Application.Extensions;
 using MemoryPlaces.Application.Image;
+using MemoryPlaces.Application.Image.Commands.DeleteImage;
 using MemoryPlaces.Application.Image.Commands.UploadImages;
 using MemoryPlaces.Application.Image.Queries.GetAllImages;
 using MemoryPlaces.Application.Image.Queries.GetAllImagesByPlaceId;
@@ -12,7 +13,7 @@ namespace MemoryPlaces.Api.Controllers;
 
 [Route("api/image")]
 [ApiController]
-// [Authorize]
+[Authorize]
 public class ImageController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -57,6 +58,15 @@ public class ImageController : ControllerBase
         var blobUris = await _mediator.Send(command);
 
         return Ok(blobUris);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteImage(int id)
+    {
+        var query = new DeleteImageCommand() { ImageId = id };
+        await _mediator.Send(query);
+
+        return NoContent();
     }
 
     [HttpGet]
