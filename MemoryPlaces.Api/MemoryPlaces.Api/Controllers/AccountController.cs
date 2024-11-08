@@ -21,7 +21,7 @@ public class AccountController : ControllerBase
     public async Task<ActionResult> RegisterUser([FromBody] RegisterCommand command)
     {
         await _mediator.Send(command);
-        return Ok();
+        return Created();
     }
 
     [HttpPost("login")]

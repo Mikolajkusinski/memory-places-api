@@ -51,6 +51,32 @@ namespace MemoryPlaces.Infrastructure.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("MemoryPlaces.Domain.Entities.Image", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("PlaceId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PlaceId");
+
+                    b.ToTable("Images");
+                });
+
             modelBuilder.Entity("MemoryPlaces.Domain.Entities.Period", b =>
                 {
                     b.Property<int>("Id")
@@ -235,6 +261,17 @@ namespace MemoryPlaces.Infrastructure.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("MemoryPlaces.Domain.Entities.Image", b =>
+                {
+                    b.HasOne("MemoryPlaces.Domain.Entities.Place", "Place")
+                        .WithMany("Images")
+                        .HasForeignKey("PlaceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Place");
+                });
+
             modelBuilder.Entity("MemoryPlaces.Domain.Entities.Place", b =>
                 {
                     b.HasOne("MemoryPlaces.Domain.Entities.User", "Author")
@@ -279,6 +316,11 @@ namespace MemoryPlaces.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("MemoryPlaces.Domain.Entities.Place", b =>
+                {
+                    b.Navigation("Images");
                 });
 
             modelBuilder.Entity("MemoryPlaces.Domain.Entities.User", b =>

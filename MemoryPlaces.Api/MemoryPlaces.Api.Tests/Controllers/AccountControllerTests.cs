@@ -35,7 +35,7 @@ public class AccountControllerTests
         var result = await _controller.RegisterUser(registerCommand);
 
         // Assert
-        result.Should().BeOfType<OkResult>();
+        result.Should().BeOfType<CreatedResult>();
         _mediatorMock.Verify(m => m.Send(It.IsAny<RegisterCommand>(), default), Times.Once);
     }
 

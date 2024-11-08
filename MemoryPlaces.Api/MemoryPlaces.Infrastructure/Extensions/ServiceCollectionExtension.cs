@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Azure.Storage.Blobs;
 using MemoryPlaces.Application.Interfaces;
 using MemoryPlaces.Domain.RepositoryInterfaces;
 using MemoryPlaces.Infrastructure.Mail;
@@ -29,12 +30,18 @@ public static class ServiceCollectionExtension
                 configuration.GetConnectionString("MemoryPlacesDBConnectionString")
             )
         );
+        services.AddSingleton(
+            new BlobServiceClient(configuration.GetConnectionString("AzureBlobConnectionString"))
+        );
 
         services.Configure<MailSettings>(configuration.GetSection("MailSettings"));
         services.AddTransient<IEmailSenderService, EmailSenderService>();
         services.AddTransient<ITemplateService, TemplateService>();
 
+        services.AddScoped<IBlobStorageService, BlobStorageService>();
         services.AddScoped<DatabaseSeeder>();
         services.AddScoped<IAccountRepository, AccountRepository>();
+        services.AddScoped<IPlaceRepository, PlaceRepository>();
+        services.AddScoped<IImageRepository, ImageRepository>();
     }
 }
